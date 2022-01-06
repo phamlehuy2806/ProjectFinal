@@ -1,0 +1,19 @@
+table {
+  th,
+  td {
+    text-align: center;
+  }
+}
+
+.status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.fncbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

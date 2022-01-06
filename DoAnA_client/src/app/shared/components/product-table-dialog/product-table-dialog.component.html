@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="title flex__center--align">
+    <mat-icon>shopping_bag</mat-icon>
+    <h1>Cart:</h1>
+    <mat-chip-list *ngIf="data.carts.length>1">
+      <mat-chip selected color="accent"> Total: {{total}}$</mat-chip>
+    </mat-chip-list>
+  </div>
+  <div class="row">
+    <div *ngFor="let cart of data.carts" class="col-11 mb-4">
+      <div class="mb-3">
+        <mat-chip-list>
+          <mat-chip selected color="warn"> {{ cart.customerEmail }}</mat-chip>
+          <mat-chip selected color="primary"> Total: {{ cart.total }}$</mat-chip>
+          <mat-chip selected color="primary"> Is Rated: {{ cart.isRated ? "yes" : "no" }} </mat-chip>
+          <mat-chip selected color="primary"> Status: {{ cart.status }}</mat-chip>
+          <mat-chip selected color="accent"> Create At: {{ cart.createdAt| date: "h:mm a, M/d/yy"}}</mat-chip>
+        </mat-chip-list>
+      </div>
+
+      <app-product-table [productList]="cart.orderedProduct" [displayedColumns]="column"></app-product-table>
+
+      <mat-divider class="mt-3"></mat-divider>
+    </div>
+
+    <div class="col-1">
+      <div class="button--tool">
+        <button color="warn" mat-raised-button (click)="onNoClick()">
+          Cancel
+        </button>
+        <button color="primary" mat-raised-button *ngIf="data?.isExport" [mat-dialog-close]="true">
+          Export
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

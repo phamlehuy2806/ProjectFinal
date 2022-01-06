@@ -1,0 +1,53 @@
+<div class="container card">
+  <div class="row" *ngIf="product">
+    <div class="col-md-6">
+      <div class="product-image">
+        <img [src]="product.imageUrl" alt="" class="img-fluid" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h1 class="text-bold text-strong">{{ product.name }}</h1>
+      <span>
+        <h1>
+          <span [ngClass]=" product.sale > 0 ? 'sale' : ''">
+            ${{ product.price }}
+          </span>
+          <span *ngIf=" product.sale > 0">
+            ${{ (product.price * (100 - product.sale)) / 100 }}
+          </span>
+          <span class="currency-codeblocks">
+            <small>USD</small>
+          </span>
+        </h1>
+      </span>
+      <div class="star">
+        <app-staring [selectedRating]="product.rating" [disabled]="true">
+        </app-staring>
+      </div>
+      <span>
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip color="primary" selected>{{ product?.gender }}</mat-chip>
+          <mat-chip color="accent" selected> {{ product?.type }}</mat-chip>
+          <mat-chip [hidden]="product?.sale === 0" color="warn" selected>{{
+            product?.sale + "%"
+          }}</mat-chip>
+        </mat-chip-list>
+      </span>
+      <p class="seller-name-codeblocks mt-3 mb-1">
+        Total Product Sale: {{product.totalSell}}
+      </p>
+      <div class="functbtn">
+        <span class="buy-form-codeblock">
+          <button type="button" class="btn btn-primary" (click)="addToCart()">
+            Add To Cart
+          </button>
+        </span>
+        <span class="buy-form-codeblock">
+          <button routerLink="/products" type="button" class="btn btn-primary">
+            Back To Shop
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
